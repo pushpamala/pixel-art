@@ -1,25 +1,23 @@
 // Select color input
+const color = document.querySelector('#colorPicker');
 // Select size input
-
+const height = document.querySelector('#inputHeight');
+const width = document.querySelector('#inputWeight');
 // When size is submitted by the user, call makeGrid()
-document.getElementById('btnMakeGrid').addEventListener('click', makeGrid);
-function makeGrid() {
-  const tbl = document.getElementById('pixelCanvas');
-  const rows = document.getElementById('inputHeight').value;
-  const cols = document.getElementById('inputWeight').value;
+const submitButton = document.querySelector('#submitBtn');
+submitButton.addEventListener('click', makeGrid);
+const tbl = document.querySelector('#pixelCanvas');
+tbl.addEventListener('click', function(e){
+        e.target.style.backgroundColor = color.value;
+      });
+function makeGrid() { 
   tbl.innerHTML = '';
-  for (var i = 0; i < rows; i++) {
-    const tr = document.createElement('tr');
-    for (var j = 0; j < cols; j++) {
-      const td = document.createElement('td');
+  for (let i = 0; i < height.value; i++) {
+    const tr = document.createElement('tr');    
+    for (let j = 0; j < width.value; j++) {
+      const td = document.createElement('td'); 
       tr.appendChild(td);
-      td.addEventListener('click', function(e) {
-        e.target.style.backgroundColor = document.getElementById('colorPicker').value;
-      });        
-         }
+    }
     tbl.appendChild(tr);
-}
-
-// Your code goes here!
-
+  }
 }
